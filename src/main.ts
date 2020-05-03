@@ -62,7 +62,7 @@ function start(shop: BlacksmithShop) {
            const sorted = shop.sortArmorList(qEl.data("value"));
            armorTable.empty();
            sorted.forEach(item => {
-               armorTable.append(createArmorListItem(item));
+               armorTable.prepend(createArmorListItem(item));
            })
         })
     });
