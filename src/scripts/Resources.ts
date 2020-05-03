@@ -17,7 +17,7 @@ export class Thread implements Resource {
 export class Iron implements Resource {
     price = 20;
     weight = 700;
-    intellect = -2;
+    intellect = 0.1;
     agility = 13;
     strength = 40;
 }
@@ -25,7 +25,7 @@ export class Iron implements Resource {
 export class Steel implements Resource {
     price = 100;
     weight = 1000;
-    intellect = -10;
+    intellect = 0.1;
     agility = 5;
     strength = 89;
 }

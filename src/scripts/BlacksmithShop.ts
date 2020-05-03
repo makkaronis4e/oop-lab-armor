@@ -45,10 +45,10 @@ export class BlacksmithShop extends ForgeFactory {
     }
 
     public sortArmorList(field: string): ArmorItem[] {
-        if (this.armorList?.length > 1) {
+        if (this.armorList?.length < 1) {
             return;
         }
-        return sortBy(this.armorList, [field.toLowerCase()]);
+        return sortBy(this.armorList, [field]);
     }
 
     public clearArmorList(): void {

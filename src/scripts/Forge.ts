@@ -1,5 +1,5 @@
 import {Resource} from "./Resources";
-import * as _ from "lodash";
+import {reduce} from "lodash";
 import {ArmorDefaultProps, ArmorItem, ArmorType, Boots, Chest, Helmet} from "./Armor";
 
 export interface Grades {
@@ -25,7 +25,7 @@ export class ForgeFactory {
     protected craftArmor(craftSource: ForgeContainer[], type: ArmorType): ArmorItem {
         const gradesMultiplier = this.gradesMultiplier[this.grade];
         const item =
-            _.reduce(craftSource, (result: ArmorDefaultProps, current: ForgeContainer) => {
+            reduce(craftSource, (result: ArmorDefaultProps, current: ForgeContainer) => {
             result.intellect += current.resource.intellect * current.count * gradesMultiplier;
             result.strength += current.resource.strength * current.count * gradesMultiplier;
             result.agility += current.resource.agility * current.count * gradesMultiplier;

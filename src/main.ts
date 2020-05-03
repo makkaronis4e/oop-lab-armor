@@ -1,5 +1,4 @@
 import {BlacksmithShop} from "./scripts/BlacksmithShop";
-import {ArmorType} from "./scripts/Armor";
 
 main();
 declare global {
@@ -39,7 +38,6 @@ function start(shop: BlacksmithShop) {
             shop.setArmorType(typeInputValue.toLowerCase());
             shop.setGrade(gradeInputValue);
             const armorItem = shop.craftArmor();
-            console.log(armorItem);
             armorTable.prepend(createArmorListItem(armorItem));
             clearForge();
         }
@@ -58,8 +56,14 @@ function start(shop: BlacksmithShop) {
     })
 
     $(".sort-header").each((key, el) => {
-        $(el).on("click", (event) => {
-           shop.sortArmorList(el.innerText);
+        const qEl =  $(el);
+        console.log(qEl.data("value"));
+        qEl.on("click", (event) => {
+           const sorted = shop.sortArmorList(qEl.data("value"));
+           armorTable.empty();
+           sorted.forEach(item => {
+               armorTable.append(createArmorListItem(item));
+           })
         })
     });
 
@@ -67,6 +71,7 @@ function start(shop: BlacksmithShop) {
         shop.clearForge();
         forgeResourcesList.empty();
     }
+
 }
 
 function showWarning(text: string): void {
