@@ -1,7 +1,7 @@
 import {ForgeFactory} from "./Forge";
 import {Iron, Resource, Silk, Steel, Thread, Wood} from "./Resources";
 import {ArmorItem, ArmorType} from "./Armor";
-import {sortBy} from "lodash";
+import {sortBy, filter} from "lodash";
 
 export class BlacksmithShop extends ForgeFactory {
 
@@ -34,6 +34,13 @@ export class BlacksmithShop extends ForgeFactory {
 
     public setGrade(grade: string): void {
         this.grade = grade.toLowerCase();
+    }
+
+    public filterList(value: any): ArmorItem[] {
+        if (!value) {
+            return this.armorList;
+        }
+        return filter(this.armorList, value);
     }
 
     public getResourcesCount(): number {

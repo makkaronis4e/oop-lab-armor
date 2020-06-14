@@ -57,7 +57,6 @@ function start(shop: BlacksmithShop) {
 
     $(".sort-header").each((key, el) => {
         const qEl =  $(el);
-        console.log(qEl.data("value"));
         qEl.on("click", (event) => {
            const sorted = shop.sortArmorList(qEl.data("value"));
            armorTable.empty();
@@ -67,10 +66,24 @@ function start(shop: BlacksmithShop) {
         })
     });
 
+    $("#select-grade").on("change", (key, el) => {
+        const optionSelected = $("#select-grade option:selected").val();
+        const sorted = shop.filterList(optionSelected === "all" ? null : {grade: optionSelected});
+        armorTable.empty();
+        sorted.forEach(item => {
+            armorTable.prepend(createArmorListItem(item));
+        })
+    });
+
+
     function clearForge() {
         shop.clearForge();
         forgeResourcesList.empty();
     }
+
+}
+
+function generateLIst() {
 
 }
 
